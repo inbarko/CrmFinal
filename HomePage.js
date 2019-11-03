@@ -25,17 +25,17 @@ class HomePage {
                     await this.selenium.clickElement("","",value)
                     let colorBack=await this.selenium.isElementExists("tagName","a[href=App-bw.css]")
                     if(colorBack==false){
-                        this.logger.info(` the color change to ${color}`)
-                    console.log(` the color change to ${color}`)
+                        this.logger.info(` the color change to ${color} [Pass]`)
+                    console.log(` the color change to ${color} `)
                     }
                     else{
-                        this.logger.error(` Page background did not change`)
+                        this.logger.error(` Page background did not change[Fail]`)
                         console.log(` Page background did not change`)
 
                     }
                 }
                 else{
-                    this.logger.error(" u dont have a color button")
+                    this.logger.error(" u dont have a color button[Fail]")
                     console.log(" u dont have a color button")
                 }
             } catch(error){

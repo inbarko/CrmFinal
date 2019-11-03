@@ -6,12 +6,12 @@ class ClientsPage {
     
     //The function navigates the user to the clients page
     async navigateToClientsPage() {
-        try{
+    
             this.logger.info("navigateToClientsPage:")
             await this.selenium.getURL("https://lh-crm.herokuapp.com/client")
-        }catch(error){
-            console.error( `Error  with ${this.navigateToClientsPage} function`)
-        }
+       
+            // console.error( `Error  with ${this.navigateToClientsPage} function`)
+        
     }
 
     //A function that receives an Input and attritube

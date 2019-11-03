@@ -51,7 +51,7 @@ class ActionsPageTest {
 
 
 
-let a = new ActionsPageTest("ActionTestResults")
+let a = new ActionsPageTest("TestResults")
 // a.actionsTestAddClient()
 // a.actionsTestUpdateClient()
 a.actionsTestChangeColor()

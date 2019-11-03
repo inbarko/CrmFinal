@@ -1,22 +1,51 @@
 'use strict';
+
 const { createLogger, format, transports } = require('winston');
+const fs = require('fs');
+const path = require('path');
+
+const env = process.env.NODE_ENV || 'development';
+const logDir = 'log';
+
+
+// Create the log directory if it does not exist
+if (!fs.existsSync(logDir)) {
+    fs.mkdirSync(logDir);
+}
 
 
 class Logger {
     constructor(testName) {
         this.date = new Date()
         this.logger = createLogger({
-            level: 'debug',
+            // change level if in dev environment versus production
+            level: env === 'production' ? 'info' : 'debug',
             format: format.combine(
-                format.colorize(),
-                format.timestamp({
-                format: 'YYYY-MM-DD HH:mm:ss'
-                }),
-                format.printf(info => `${info.timestamp} ${info.level}: ${info.message}`)
+                format.label({ label: path.basename(process.mainModule.filename) }),
+                format.timestamp({ format: 'YYYY-MM-DD HH:mm:ss' })
             ),
-            transports: [new transports.Console(),
-                        new transports.File({filename: '../allTheTests/'+this.date.getDay() +"."+ this.date.getMonth()+ "."+this.date.getFullYear()+'/'+testName+'.log' })]
+            transports: [
+                new transports.Console({
+                    format: format.combine(
+                        format.colorize(),
+                        format.printf(
+                            info =>
+                                `${info.timestamp} ${info.level} [${info.label}]: ${info.message}`
+                        )
+                    )
+                }),
+                new transports.File({
+                    filename: 'C:/Users/inbar/code/bootcamp/allTheTests/'+0+this.date.getDate() +"."+(this.date.getMonth()+1)+ "."+this.date.getFullYear()+'/'+testName+'.log' ,
+                    format: format.combine(
+                        format.printf(
+                            info =>
+                                `${info.timestamp} ${info.level} [${info.label}]: ${info.message}`
+                        )
+                    )
+                })
+            ]
         });
     }
+
 }
-module.exports = Logger
+module.exports = Logger;

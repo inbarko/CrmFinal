@@ -6,8 +6,8 @@ class ClientPageTest {
     constructor(name) {
         this.testSelenium = new BasePage(name).selenium
         this.logger = this.testSelenium.logger
-        this.homePage = new HomePage(this.testSelenium)
-        this.clientPage=new ClientPage(this.testSelenium)
+        this.homePage = new HomePage(this.testSelenium,this.logger)
+        this.clientPage=new ClientPage(this.testSelenium,this.logger)
     }
    
 
@@ -15,12 +15,12 @@ class ClientPageTest {
     //A function that receives an Input and attritube
     //and print whether all received answers match the search
     async clientTestSearchEmail(){
-        try{
+        // try{
             await this.clientPage.navigateToClientsPage()
             await this.clientPage.search("inbar@test.com","Email")
-        }catch(error){
-            console.error( `Error  with ${this.clientTestSearch} function`)
-        }
+        // }catch(error){
+        //     console.error( `Error  with ${this.clientTestSearch} function`)
+        // }
     }
     
     //The function navigates the user to the clients page
@@ -50,7 +50,7 @@ class ClientPageTest {
     } 
 }   
 
-let c=new ClientPageTest("ClientTestResults")
+let c=new ClientPageTest("TestResults")
 c.clientTestSearchEmail()
 // c.clientTestSearchOwner()
 // c.clientTestDeleteClient()

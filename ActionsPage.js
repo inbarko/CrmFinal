@@ -96,7 +96,7 @@ class ActionsPage {
                     this.transferOwnershipTo(clientNameStr, ownerNameStr)
                     break
                 default:
-                    this.logger.info("The button name you sent does not exist")
+                    this.logger.error("The button name you sent does not exist [Fail]")
                     console.log("The button name you sent does not exist")
             }
         } catch (error) {
@@ -111,15 +111,15 @@ class ActionsPage {
         try {
             let popUP = await this.selenium.getTextFromElement("xpath", "//div[4]/div[4]/div")
             if (popUP == "SOME DETAILS ARE MISSING") {
-                this.logger.error(` u cant add/update a client because ${popUP}`)
+                this.logger.error(` u cant add/update a client because ${popUP} [Fail]`)
                 console.log(` u cant add/update a client because ${popUP}`)
             }
             else if (popUP == "UPDATE SUCCESSFUL") {
-                this.logger.info(`u add/update a client because ${popUP}`)
+                this.logger.info(`u add/update a client because ${popUP} [Pass]`)
                 console.log(`u add/update a client because ${popUP}`)
             }
         } catch (error) {
-            console.error(`Error  with ${this.updateClient} function`)
+            console.error(`Error  with ${this.updateClient} function `)
         }
     }
 }

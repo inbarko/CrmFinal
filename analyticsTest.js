@@ -8,10 +8,10 @@ class AnalyticsPageTest {
     constructor(name) {
         this.testSelenium = new BasePage(name).selenium
         this.logger = this.testSelenium.logger
-        this.homePage = new HomePage(this.testSelenium)
-        this.clientPage = new ClientPage(this.testSelenium)
-        this.actionsPage = new ActionsPage(this.testSelenium)
-        this.analyticsPage = new AnalyticsPage(this.testSelenium)
+        this.homePage = new HomePage(this.testSelenium,this.logger)
+        this.clientPage = new ClientPage(this.testSelenium,this.logger)
+        this.actionsPage = new ActionsPage(this.testSelenium,this.logger)
+        this.analyticsPage = new AnalyticsPage(this.testSelenium,this.logger)
     }
 
 
@@ -137,7 +137,7 @@ class AnalyticsPageTest {
     }
 }
 
-let a = new AnalyticsPageTest("AnalyticsTestResults")
+let a = new AnalyticsPageTest("TestResults")
 // a.analyticsTestCounterEmailTest()
 // a.analyticsTestCounterOutstandingClients()
 a.analyticsTestCountercountryTest()
